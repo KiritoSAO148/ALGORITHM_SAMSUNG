@@ -21,26 +21,20 @@ void FileIO(){
     #endif
 }
 
-bool prime(int n){
-	if (n < 2) return false;
-	for (int i = 2; i <= sqrt(n); i++){
-		if (n % i == 0) return false;
-	}
-	return true;
+ll dp[55]; int n;
+
+void init(){
+	dp[1] = 1; dp[2] = 2; dp[3] = 4;
+	for (int i = 4; i <= 50; ++i) dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
 }
 
 int main(){
     //FileIO();
     FastIO;
+    init();
 	TC(){
-		ll l, r; cin >> l >> r;
-		int tmp = sqrt(l);
-		if (1ll * tmp * tmp != l) tmp++;
-		int cnt = 0;
-		for (int i = tmp; i <= sqrt(r); i++){
-			if (prime(i)) cnt++;
-		}
-		cout << cnt; el;
+		cin >> n;
+		cout << dp[n]; el;
 	}
     return 0;
 }

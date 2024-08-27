@@ -21,26 +21,22 @@ void FileIO(){
     #endif
 }
 
-bool prime(int n){
-	if (n < 2) return false;
-	for (int i = 2; i <= sqrt(n); i++){
-		if (n % i == 0) return false;
-	}
-	return true;
-}
-
 int main(){
     //FileIO();
     FastIO;
 	TC(){
-		ll l, r; cin >> l >> r;
-		int tmp = sqrt(l);
-		if (1ll * tmp * tmp != l) tmp++;
-		int cnt = 0;
-		for (int i = tmp; i <= sqrt(r); i++){
-			if (prime(i)) cnt++;
+		int n; cin >> n;
+		int a[n];
+		priority_queue <ll, vector<ll>, greater<ll>> pq;
+		for (int i = 0; i < n; i++) cin >> a[i], pq.push(a[i]);
+		ll ans = 0;
+		while (pq.size() > 1){
+			ll first = pq.top(); pq.pop();
+			ll sec = pq.top(); pq.pop();
+			ans += first + sec;
+			pq.push(first + sec);
 		}
-		cout << cnt; el;
+		cout << ans; el;
 	}
     return 0;
 }
